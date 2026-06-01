@@ -1,0 +1,67 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Character {
+protected:
+    string name;
+    int hp;
+    int attack;
+
+public:
+    Character(string n, int h, int a) {
+        name = n;
+        hp = h;
+        attack = a;
+    }
+
+    void ShowInfo() {
+        cout << "이름 : " << name << endl;
+        cout << "체력 : " << hp << endl;
+        cout << "공격력 : " << attack << endl;
+    }
+};
+
+class Player : public Character {
+public:
+    Player(string n)
+        : Character(n, 100, 20) {
+    }
+};
+
+class Monster : public Character {
+public:
+    Monster(string n)
+        : Character(n, 80, 15) {
+    }
+};
+
+class GameManager {
+private:
+    Player player;
+    Monster monster;
+
+public:
+    GameManager()
+        : player("Player1"), monster("Goblin") {
+    }
+
+    void StartGame() {
+        cout << "===== RPG 게임 시작 =====\n\n";
+
+        cout << "[플레이어]\n";
+        player.ShowInfo();
+
+        cout << "\n[몬스터]\n";
+        monster.ShowInfo();
+    }
+};
+
+int main() {
+
+    GameManager game;
+    game.StartGame();
+
+    return 0;
+}
